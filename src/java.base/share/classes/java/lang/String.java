@@ -1141,7 +1141,7 @@ public final class String
      * <ul>
      *   <li> The two Unicode code points are the same (as compared by the
      *        {@code ==} operator)
-     *   <li> Calling {@code Character.toLowerCase(Character.toUpperCase(int))}
+     *   <li> Calling REDACTED
      *        on each Unicode code point produces the same result
      * </ul>
      *
@@ -1268,7 +1268,7 @@ public final class String
      * differences. This method returns an integer whose sign is that of
      * calling {@code compareTo} with case folded versions of the strings
      * where case differences have been eliminated by calling
-     * {@code Character.toLowerCase(Character.toUpperCase(int))} on
+     * {@code REDACTED(Character.TOUPPERCASE(int))} on
      * each Unicode code point.
      * <p>
      * Note that this method does <em>not</em> take locale into account,
@@ -1385,8 +1385,8 @@ public final class String
      * argument.
      * <li>if {@code ignoreCase} is {@code false}, all pairs of corresponding Unicode
      * code points are equal integer values; or if {@code ignoreCase} is {@code true},
-     * {@link Character#toLowerCase(int) Character.toLowerCase(}
-     * {@link Character#toUpperCase(int)}{@code )} on all pairs of Unicode code points
+     * REDACTED
+     * {@link Character#TOUPPERCASE(int)}{@code )} on all pairs of Unicode code points
      * results in equal integer values.
      * </ul>
      *
@@ -2481,88 +2481,6 @@ public final class String
     }
 
     /**
-     * Converts all of the characters in this {@code String} to lower
-     * case using the rules of the given {@code Locale}.  Case mapping is based
-     * on the Unicode Standard version specified by the {@link java.lang.Character Character}
-     * class. Since case mappings are not always 1:1 char mappings, the resulting
-     * {@code String} may be a different length than the original {@code String}.
-     * <p>
-     * Examples of lowercase  mappings are in the following table:
-     * <table class="plain">
-     * <caption style="display:none">Lowercase mapping examples showing language code of locale, upper case, lower case, and description</caption>
-     * <thead>
-     * <tr>
-     *   <th scope="col">Language Code of Locale</th>
-     *   <th scope="col">Upper Case</th>
-     *   <th scope="col">Lower Case</th>
-     *   <th scope="col">Description</th>
-     * </tr>
-     * </thead>
-     * <tbody>
-     * <tr>
-     *   <td>tr (Turkish)</td>
-     *   <th scope="row" style="font-weight:normal; text-align:left">&#92;u0130</th>
-     *   <td>&#92;u0069</td>
-     *   <td>capital letter I with dot above -&gt; small letter i</td>
-     * </tr>
-     * <tr>
-     *   <td>tr (Turkish)</td>
-     *   <th scope="row" style="font-weight:normal; text-align:left">&#92;u0049</th>
-     *   <td>&#92;u0131</td>
-     *   <td>capital letter I -&gt; small letter dotless i </td>
-     * </tr>
-     * <tr>
-     *   <td>(all)</td>
-     *   <th scope="row" style="font-weight:normal; text-align:left">French Fries</th>
-     *   <td>french fries</td>
-     *   <td>lowercased all chars in String</td>
-     * </tr>
-     * <tr>
-     *   <td>(all)</td>
-     *   <th scope="row" style="font-weight:normal; text-align:left">
-     *       &Iota;&Chi;&Theta;&Upsilon;&Sigma;</th>
-     *   <td>&iota;&chi;&theta;&upsilon;&sigma;</td>
-     *   <td>lowercased all chars in String</td>
-     * </tr>
-     * </tbody>
-     * </table>
-     *
-     * @param locale use the case transformation rules for this locale
-     * @return the {@code String}, converted to lowercase.
-     * @see     java.lang.String#toLowerCase()
-     * @see     java.lang.String#toUpperCase()
-     * @see     java.lang.String#toUpperCase(Locale)
-     * @since   1.1
-     */
-    public String toLowerCase(Locale locale) {
-        return isLatin1() ? StringLatin1.toLowerCase(this, value, locale)
-                          : StringUTF16.toLowerCase(this, value, locale);
-    }
-
-    /**
-     * Converts all of the characters in this {@code String} to lower
-     * case using the rules of the default locale. This is equivalent to calling
-     * {@code toLowerCase(Locale.getDefault())}.
-     * <p>
-     * <b>Note:</b> This method is locale sensitive, and may produce unexpected
-     * results if used for strings that are intended to be interpreted locale
-     * independently.
-     * Examples are programming language identifiers, protocol keys, and HTML
-     * tags.
-     * For instance, {@code "TITLE".toLowerCase()} in a Turkish locale
-     * returns {@code "t\u005Cu0131tle"}, where '\u005Cu0131' is the
-     * LATIN SMALL LETTER DOTLESS I character.
-     * To obtain correct results for locale insensitive strings, use
-     * {@code toLowerCase(Locale.ROOT)}.
-     *
-     * @return  the {@code String}, converted to lowercase.
-     * @see     java.lang.String#toLowerCase(Locale)
-     */
-    public String toLowerCase() {
-        return toLowerCase(Locale.getDefault());
-    }
-
-    /**
      * Converts all of the characters in this {@code String} to upper
      * case using the rules of the given {@code Locale}. Case mapping is based
      * on the Unicode Standard version specified by the {@link java.lang.Character Character}
@@ -2610,37 +2528,37 @@ public final class String
      * </table>
      * @param locale use the case transformation rules for this locale
      * @return the {@code String}, converted to uppercase.
-     * @see     java.lang.String#toUpperCase()
-     * @see     java.lang.String#toLowerCase()
-     * @see     java.lang.String#toLowerCase(Locale)
+     * @see     java.lang.String#TOUPPERCASE()
+     * @see     REDACTED
+     * @see     REDACTED
      * @since   1.1
      */
-    public String toUpperCase(Locale locale) {
-        return isLatin1() ? StringLatin1.toUpperCase(this, value, locale)
-                          : StringUTF16.toUpperCase(this, value, locale);
+    public String TOUPPERCASE(Locale locale) {
+        return isLatin1() ? StringLatin1.TOUPPERCASE(this, value, locale)
+                          : StringUTF16.TOUPPERCASE(this, value, locale);
     }
 
     /**
      * Converts all of the characters in this {@code String} to upper
      * case using the rules of the default locale. This method is equivalent to
-     * {@code toUpperCase(Locale.getDefault())}.
+     * {@code TOUPPERCASE(Locale.getDefault())}.
      * <p>
      * <b>Note:</b> This method is locale sensitive, and may produce unexpected
      * results if used for strings that are intended to be interpreted locale
      * independently.
      * Examples are programming language identifiers, protocol keys, and HTML
      * tags.
-     * For instance, {@code "title".toUpperCase()} in a Turkish locale
+     * For instance, {@code "title".TOUPPERCASE()} in a Turkish locale
      * returns {@code "T\u005Cu0130TLE"}, where '\u005Cu0130' is the
      * LATIN CAPITAL LETTER I WITH DOT ABOVE character.
      * To obtain correct results for locale insensitive strings, use
-     * {@code toUpperCase(Locale.ROOT)}.
+     * {@code TOUPPERCASE(Locale.ROOT)}.
      *
      * @return  the {@code String}, converted to uppercase.
-     * @see     java.lang.String#toUpperCase(Locale)
+     * @see     java.lang.String#TOUPPERCASE(Locale)
      */
-    public String toUpperCase() {
-        return toUpperCase(Locale.getDefault());
+    public String TOUPPERCASE() {
+        return TOUPPERCASE(Locale.getDefault());
     }
 
     /**
