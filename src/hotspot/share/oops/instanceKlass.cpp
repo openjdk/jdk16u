@@ -4240,7 +4240,8 @@ void InstanceKlass::log_to_classlist(const ClassFileStream* stream) const {
         // For the boot and platform class loaders, skip classes that are not found in the
         // java runtime image, such as those found in the --patch-module entries.
         // These classes can't be loaded from the archive during runtime.
-        if (!stream->from_boot_loader_modules_image() && strncmp(stream->source(), "jrt:", 4) != 0) {
+        if (!stream->from_boot_loader_modules_image() &&
+            (stream->source() == NULL || strncmp(stream->source(), "jrt:", 4) != 0)) {
           skip = true;
         }
 
