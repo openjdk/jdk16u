@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2020, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2021, Oracle and/or its affiliates. All rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * This code is free software; you can redistribute it and/or modify it
@@ -4255,7 +4255,8 @@ void InstanceKlass::log_to_classlist(const ClassFileStream* stream) const {
     ResourceMark rm;
     if (skip) {
       tty->print_cr("skip writing class %s from source %s to classlist file",
-                    name()->as_C_string(), stream->source());
+                    name()->as_C_string(),
+                    stream->source() != NULL ?  stream->source() : "(null)");
     } else {
       ClassListWriter w;
       w.stream()->print_cr("%s", name()->as_C_string());
