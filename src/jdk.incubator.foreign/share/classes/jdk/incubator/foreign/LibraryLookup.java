@@ -49,9 +49,9 @@ import java.util.Optional;
  * is reachable; this can be achieved by creating the segment using the {@link MemoryAddress#asSegmentRestricted(long, Runnable, Object)}
  * restricted segment factory, as follows:
  * <pre>{@code
-LibraryLookup defaultLookup = LibraryLookup.defaultLookup();
-LibraryLookup.Symbol errno = defaultLookup.lookup("errno");
-MemorySegment errnoSegment = errno.address().asRestrictedSegment(4, errno);
+LibraryLookup defaultLookup = LibraryLookup.ofDefault();
+Optional<LibraryLookup.Symbol> errno = defaultLookup.lookup("errno");
+MemorySegment errnoSegment = errno.get().address().asRestrictedSegment(4, errno);
  * }</pre>
  * <p>
  * To allow for a library to be unloaded, a client will have to discard any strong references it
